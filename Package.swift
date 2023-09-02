@@ -3,7 +3,7 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "ExpandForTestingMacro",
+    name: "ExposeForTestingMacro",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v13),
@@ -12,10 +12,9 @@ let package = Package(
         .macCatalyst(.v13),
     ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "ExpandForTestingMacro",
-            targets: ["ExpandForTestingMacro"]
+            name: "ExposeForTestingMacro",
+            targets: ["ExposeForTestingMacro"]
         ),
     ],
     dependencies: [
@@ -26,13 +25,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ExpandForTestingMacro",
+            name: "ExposeForTestingMacro",
             dependencies: [
-                "ExpandForTestingMacroPlugin",
+                "ExposeForTestingMacroPlugin",
             ]
         ),
         .macro(
-            name: "ExpandForTestingMacroPlugin",
+            name: "ExposeForTestingMacroPlugin",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
@@ -42,19 +41,16 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "ExpandForTestingMacroPluginTests",
+            name: "ExposeForTestingMacroPluginTests",
             dependencies: [
-                "ExpandForTestingMacroPlugin",
+                "ExposeForTestingMacroPlugin",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-            ],
-            swiftSettings: [
-                .define("TESTING"),
             ]
         ),
         .executableTarget(
             name: "Examples",
             dependencies: [
-                "ExpandForTestingMacro",
+                "ExposeForTestingMacro",
             ],
             path: "Examples",
             swiftSettings: [
