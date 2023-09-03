@@ -47,15 +47,5 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),
-        .executableTarget(
-            name: "Examples",
-            dependencies: [
-                "ExposeForTestingMacro",
-            ],
-            path: "Examples",
-            swiftSettings: [
-                .define("TESTING"),
-            ]
-        ),
     ]
 )

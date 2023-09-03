@@ -1,6 +1,7 @@
 .PHONY: bootstrap
 bootstrap:
-	@brew install swiftformat
+	@brew install mint
+	@mint bootstrap
 
 .PHONY: build
 build:
@@ -17,4 +18,5 @@ format:
 
 .PHONY: lint
 lint:
-	@swiftformat --lint .
+	@xcrun --sdk macosx mint run swiftformat swiftformat --lint .
+	@xcrun --sdk macosx mint run swiftlint swiftlint lint .
